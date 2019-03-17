@@ -1,0 +1,11 @@
+args:
+  expdir: ./dms_env
+  logdir: ./logs/dms_walker/qd4pg  #  change me
+  environment: SuiteWrapper
+
+redis:
+  port: 12112
+  prefix: dms-walker-qd4pg
+
+env:
+  domain_task: walker-run

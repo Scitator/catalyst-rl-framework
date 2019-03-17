@@ -1,0 +1,3 @@
+algorithm:
+  critic_distribution: categorical
+  values_range: [-100, 100]

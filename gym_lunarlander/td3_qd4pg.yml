@@ -1,0 +1,116 @@
+shared:
+  history_len: 3
+  n_step: 1
+  gamma: 0.99
+
+args:
+  logdir: ./logs/gym-ll-td3-qd4pg  #  change me
+  algorithm: TD3
+  environment: GymWrapper
+  vis: 1
+  infer: 0  #  change me
+  train: 1  #  change me
+  action_noise_prob: 0.5
+  param_noise_prob: 0.2
+  max_action_noise: 0.2
+  max_param_noise: 0.1
+
+redis:
+  port: 12000
+  prefix: gym
+
+env:
+  env_name: LunarLanderContinuous-v2
+  reward_scale: 1.0
+  frame_skip: 2
+  step_delay: 0.01
+
+actor:
+  agent: Actor
+  head_hiddens: [128, 128]
+  layer_fn: Linear
+  bias: false
+  norm_fn: LayerNorm
+  activation_fn: ReLU
+  out_activation: Tanh
+
+critic:
+  agent: Critic
+  observation_hiddens: []
+  action_hiddens: []
+  head_hiddens: [128, 128, 64]
+  layer_fn: Linear
+  bias: false
+  norm_fn: LayerNorm
+  activation_fn: ReLU
+
+algorithm:
+  critic_distribution: quantile
+  actor_tau: 0.01
+  critic_tau: 0.01
+  min_action: &min_action -1.0
+  max_action: &max_action 1.0
+
+  actor_optimizer_params:
+    optimizer: Adam
+    lr: 0.0003
+  critic_optimizer_params:
+    optimizer: Adam
+    lr: 0.0003
+
+  actor_grad_clip_params:
+    func: clip_grad_value_
+    clip_value: 1.0
+
+  actor_scheduler_params:
+    scheduler: MultiStepLR
+    milestones: [2000000]  # batches
+    gamma: 1.0
+  critic_scheduler_params:
+    scheduler: MultiStepLR
+    milestones: [2000000]  # batches
+    gamma: 1.0
+
+  critic_loss_params:
+    criterion: HuberLoss
+    clip_delta: 1.0
+
+trainer:
+  batch_size: 256              # transitions
+
+  n_workers: 2
+  replay_buffer_size: 1000000  # transitions
+
+  start_learning: 500          # transitions
+  epoch_len: 1000               # batches
+  target_update_period: 1      # batches
+  save_period: 1               # epochs
+  weights_sync_period: 1       # epochs
+
+sampler:
+  weights_sync_period: 1
+
+  buffer_size: 1100
+  param_noise_steps: 1000
+
+  action_noise_t: 1
+  action_clip: [*min_action, *max_action]
+
+random_process:
+  random_process: GaussianWhiteNoiseProcess
+
+seeds: [
+  121958, 671155, 131932, 365838, 259178, 644167, 110268, 732180,
+  54886, 137337, 999890, 521430, 954698,  87498, 899159, 912756,
+  175203, 191335, 278167,  41090, 329365,  64820, 787201, 321879,
+  718315, 327069, 776997, 199041, 791743, 103355, 235796, 214176,
+  184779, 347449, 421909, 989436, 258795, 486232, 917040, 500186,
+  156730, 870910, 384681, 149503, 654811, 527035, 648143, 452366,
+  65725, 129981,  84654, 953277, 905778, 591723, 319030, 328947,
+  555839, 902648, 273538, 331236, 528178, 565894, 489492, 256840,
+  473254, 349457, 665987, 270936, 239931, 239629, 205041, 698361,
+  731912, 417113,  68148, 777089, 648531, 251995, 906606, 678843,
+  910790, 572843, 256508, 803591, 896942, 106530, 604365, 822352,
+  460337, 724839, 805889, 459773, 208261, 764469, 341097, 315139,
+  171829, 271836, 438974, 989913
+]

@@ -1,0 +1,6 @@
+algorithm:
+  critic_distribution: quantile
+
+  critic_loss_params:
+    criterion: HuberLoss
+    clip_delta: 1.0

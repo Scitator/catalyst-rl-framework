@@ -1,0 +1,11 @@
+args:
+  expdir: ./dms_env
+  logdir: ./logs/dms_humanoid/qd4pg  #  change me
+  environment: SuiteWrapper
+
+redis:
+  port: 12113
+  prefix: dms-humanoid-qd4pg
+
+env:
+  domain_task: humanoid-walk

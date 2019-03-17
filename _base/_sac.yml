@@ -1,0 +1,7 @@
+args:
+  algorithm: SAC
+  action_noise_prob: 0.0
+  max_action_noise: 0.01
+
+algorithm:
+  reward_scale: 150.0

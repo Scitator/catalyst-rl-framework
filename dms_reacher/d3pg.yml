@@ -1,0 +1,11 @@
+args:
+  expdir: ./dms_env
+  logdir: ./logs/dms_reacher/d3pg  #  change me
+  environment: SuiteWrapper
+
+redis:
+  port: 12111
+  prefix: dms-reacher-d3pg
+
+env:
+  domain_task: reacher-hard

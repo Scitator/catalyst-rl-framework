@@ -1,0 +1,6 @@
+algorithm:
+  actor_tau: 0.01
+  critic_tau: 0.01
+
+trainer:
+  target_update_period: 1    # batches

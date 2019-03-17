@@ -1,0 +1,12 @@
+args:
+  expdir: ./dms_env
+  logdir: ./logs/dms_humanoid/d3pg  #  change me
+  environment: SuiteWrapper
+
+redis:
+  port: 12111
+  prefix: dms-humanoid-d3pg
+
+env:
+  domain_task: humanoid-walk
+

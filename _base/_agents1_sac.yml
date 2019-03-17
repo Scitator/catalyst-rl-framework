@@ -1,0 +1,19 @@
+actor:
+  agent: Actor
+  head_hiddens: [400, 300]
+  layer_fn: Linear
+  bias: false
+  norm_fn: LayerNorm
+  activation_fn: ReLU
+  out_activation: null
+  policy_type: gauss
+
+critic:
+  agent: Critic
+  observation_hiddens: [400]
+  action_hiddens: []
+  head_hiddens: [300, 1]
+  layer_fn: Linear
+  bias: false
+  norm_fn: LayerNorm
+  activation_fn: ReLU

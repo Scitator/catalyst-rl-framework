@@ -1,0 +1,11 @@
+args:
+  expdir: ./dms_env
+  logdir: ./logs/dms_cheetah/d4pg  #  change me
+  environment: SuiteWrapper
+
+redis:
+  port: 12112
+  prefix: dms-cheetah-d4pg
+
+env:
+  domain_task: cheetah-run

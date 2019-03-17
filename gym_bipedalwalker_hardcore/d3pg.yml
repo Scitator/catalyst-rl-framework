@@ -1,0 +1,13 @@
+args:
+  logdir: ./logs/gym_bipedalwalker_hardcore  #  change me
+  environment: GymWrapper
+
+redis:
+  port: 12000
+  prefix: gym
+
+env:
+  env_name: BipedalWalkerHardcore-v2
+
+sampler:
+  buffer_size: 2001
