@@ -1,6 +1,10 @@
 # Catalyst.RL: A Distributed Framework for Reproducible RL Research
 
-## System requirements
+[Paper](https://arxiv.org/abs/1903.00027) & [Framework](https://github.com/catalyst-team/catalyst)
+
+## Preparation
+
+#### System requirements
 ```bash
 sudo apt install -y redis
 sudo apt install -y python3-dev zlib1g-dev libjpeg-dev \ 
@@ -8,7 +12,7 @@ sudo apt install -y python3-dev zlib1g-dev libjpeg-dev \
     libsdl2-dev libosmesa6-dev patchelf ffmpeg xvfb
 ```
 
-## Python env setup
+#### Python env setup
 ```bash
 conda create -n rl python=3.6 anaconda
 source activate rl
@@ -18,7 +22,7 @@ conda install notebook jupyter nb_conda -y
 conda remove nbpresent -y
 ```
 
-## Python requirements
+#### Python requirements
 ```bash
 pip install gym['all']
 pip install -r ./requirements.txt
@@ -27,7 +31,7 @@ pip install -r ./requirements.txt
 
 ## Examples
 
-### Local run - LunarLander
+#### Local run - LunarLander
 
 ```bash
 # terminal 1 - db node
@@ -48,7 +52,7 @@ CUDA_VISIBLE_DEVICE="" tensorboard --logdir=./logs
 ```
 
 
-### Benchmark - BipedalWalker
+#### Benchmark - BipedalWalker
 
 ```bash
 export GPUS=""  # like GPUS="0" or GPUS="0,1" for multi-gpu training
@@ -63,8 +67,8 @@ CUDA_VISIBLE_DEVICES="$GPUS" ./bin/grid_run.sh \
     --param-name "shared/n_step" \
     --param-values "1, 5" \
     --param-type "int" \
-    --wait-time 43200 \
-    --n-trials 1
+    --wait-time 10800 \  # 3 hours, use 43200 for 12 hours experiment 
+    --n-trials 1  # number of trials per experiment  
 ```
 
 
@@ -81,7 +85,7 @@ Please cite the following paper if you feel this repository useful.
 
 ## Related Projects
 
-- [NeurIPS 2018: AI for Prosthetics Challenge](https://github.com/Scitator/neurips-18-prosthetics-challenge): our 3rd place solution for NeurIPS competition based on Catalyst.RL framework 
+- [NeurIPS 2018: AI for Prosthetics Challenge](https://github.com/Scitator/neurips-18-prosthetics-challenge): our 3rd place solution for NeurIPS competition based on [Catalyst.RL](https://github.com/catalyst-team/catalyst) 
 
 ## Contact
 For any question, please contact
